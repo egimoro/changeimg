@@ -1,32 +1,76 @@
+<script>
+import image1 from "./assets/ichigo.jpeg";
+import image2 from "./assets/rukia.jpeg";
+import image3 from "./assets/ulquiorra.jpeg";
+import image4 from "./assets/getsugatenshou.jpeg";
+
+export default {
+  data() {
+    return {
+      image1: image1,
+      image2: image2,
+      image3: image3,
+      image4: image4,
+      showImg: 1,
+    };
+  },
+
+  methods: {
+    changeimg() {
+      if (this.showImg == 1) {
+        this.showImg = 2;
+      } else if (this.showImg == 2) {
+        this.showImg = 3;
+      } else if (this.showImg == 3) {
+        this.showImg = 4;
+      } else {
+        this.showImg = 1;
+      }
+    },
+  },
+};
+</script>
+
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <div>
+    <div v-if="showImg == 1">
+      <img class="borderhead" :src="image1" alt="ichigo" />
     </div>
-    <router-view />
+    <div v-else-if="showImg == 2">
+      <img class="borderhead" :src="image2" alt="rukia" />
+    </div>
+    <div v-else-if="showImg == 3">
+      <img class="borderhead" :src="image3" alt="ulquiorra" />
+    </div>
+    <div v-else>
+      <img class="borderhead" :src="image4" alt="getsugatenshou" />
+    </div>
+    <button @click="changeimg">Change Image</button>
   </div>
 </template>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+img {
+  width: 600px;
+  height: 500px;
 }
-
-#nav {
-  padding: 30px;
+.borderhead {
+  border: 2px solid;
+  border-color: blue;
+  border-radius: 5px;
 }
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+button {
+  border: 2px solid black;
+  border-radius: 8px;
+  padding: 5px;
+  font-size: 20px;
+  font-family: fantasy;
+  background-color: aqua;
 }
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+body {
+  background-color: rgba(229, 255, 204, 0.5);
+  background-image: url("./assets/urahara.jpeg");
+  background-repeat: no-repeat;
+  background-position: 80% 80%;
 }
 </style>
